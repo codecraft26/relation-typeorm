@@ -25,7 +25,10 @@ import { Group } from './user/entities/group.entity';
     ,
     
     entities: [Post,User,Group],
-    synchronize:true      
+    
+  
+    
+ synchronize:true      
   }), UserModule
 
   

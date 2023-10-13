@@ -14,4 +14,7 @@ export class Post{
     user: User;
     @ManyToOne(() => Group, group => group.posts)
     group: Group;
+
+
+    
 }
