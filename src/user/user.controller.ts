@@ -108,6 +108,21 @@ async findAllUsers(): Promise<User[]> {
   }
 
 
+
+  @Post('createPosts/:userId/:groupId')
+  async createPostGroup(@Param('userId') userId:number,@Param('groupId') groupId:number, @Body() createPostDto: CreatePostDto){
+    const post= await this.groupService.createPostIntoTheGroup(groupId,userId,createPostDto);
+    if(!post){
+      throw new NotFoundException('unsuccess');
+    }
+
+    return post;
+  }
+
+
+
+
+
   
 
 
