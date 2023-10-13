@@ -6,6 +6,7 @@ import { UserModule } from './user/user.module';
 import { UserRepository } from './user/Repository/user.repository';
 import { User } from './user/entities/user.entity';
 import { Post } from './user/entities/post.entity';
+import { Group } from './user/entities/group.entity';
 
 @Module({
   imports: [UserRepository,  TypeOrmModule.forRoot({
@@ -23,7 +24,7 @@ import { Post } from './user/entities/post.entity';
     database: "Test"
     ,
     
-    entities: [User,Post],
+    entities: [Post,User,Group],
     synchronize:true      
   }), UserModule
 
