@@ -1,11 +1,13 @@
 import { Injectable,Post,Body } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { Admin, Repository } from 'typeorm';
 
 import { User } from './entities/user.entity';
 import { Group } from './entities/group.entity';
 import { UserService } from './user.service';
 import { NotFoundException } from '@nestjs/common';
+import { GroupState } from '@nestjs/microservices/external/kafka.interface';
+import { ExceptionsHandler } from '@nestjs/core/exceptions/exceptions-handler';
 
 @Injectable()
 export class GroupsService {
@@ -52,4 +54,8 @@ export class GroupsService {
   async getGroups(): Promise<Group[]> {
     return this.groupRepository.find({ relations: ['users'] });
   }
+
+
+
+  
 }
