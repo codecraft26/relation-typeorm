@@ -1,5 +1,6 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn ,ManyToMany,JoinTable} from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column,OneToMany, ManyToOne, JoinColumn ,ManyToMany,JoinTable} from 'typeorm';
 import { User } from './user.entity';
+import { Post } from './post.entity';
 
 @Entity("groups")
 export class Group {
@@ -18,4 +19,10 @@ export class Group {
   @ManyToMany(() => User, (user) => user.groups, { eager: true })
   @JoinTable()
   users: User[];
+
+  @OneToMany(() => Post, post => post.group)
+  posts: Post[];
+
+
+
 }

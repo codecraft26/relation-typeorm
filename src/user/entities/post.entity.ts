@@ -1,5 +1,6 @@
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { User } from "./user.entity";
+import { Group } from "./group.entity";
 @Entity('posts')
 export class Post{
             
@@ -10,5 +11,7 @@ export class Post{
     @Column({ nullable: true })
     description: string;
     @ManyToOne(() => User, (user) => user.posts)
-  user: User;
+    user: User;
+    @ManyToOne(() => Group, group => group.posts)
+    group: Group;
 }
