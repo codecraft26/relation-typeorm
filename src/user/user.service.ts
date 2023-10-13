@@ -5,6 +5,7 @@ import { User } from './entities/user.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CreateUserDto } from './dto/create.dto';
 import { PostRepository } from './Repository/post.repository';
+import { Group } from './entities/group.entity';
 @Injectable()
 export class UserService {
     constructor(
@@ -15,7 +16,15 @@ export class UserService {
         ) { }
 
 
-    
+        async findUserGroups(userId: number): Promise<Group[]> {
+          const user = await this.userRepository.findOne({ where: { id: userId }, relations: ['groups']});
+      
+          if (!user) {
+            return [];
+          }
+      
+          return user.groups;
+        }
        
 
         async create(createUserDto: CreateUserDto): Promise<User> {
@@ -26,6 +35,9 @@ export class UserService {
 
         async findAll(): Promise<User[]> {
             return await this.userRepository.find();
+        }
+        async findUserById(id: number): Promise<User> {
+            return await this.userRepository.findOne({where:{id:id}});
         }
 
 
